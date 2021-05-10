@@ -34,7 +34,8 @@ msbuild.err
 msbuild.wrn
 
 #variavel de ambiente
-appsettings.DEvelopment.json
+appsettings.Development.json
+appsettings.josn
 
 # Visual Studio 2015
 .vs/
@@ -91,3 +92,7 @@ client/Thumbs.db
 #Json
 client/package-lock.json
 client/package.json
+
+#ssl
+
+ssl
