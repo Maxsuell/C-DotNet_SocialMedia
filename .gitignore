@@ -34,8 +34,9 @@ msbuild.err
 msbuild.wrn
 
 #variavel de ambiente
-appsettings.Development.json
-appsettings.josn
+appsettings.Development.Json
+
+Api/appsettings.Json
 
 # Visual Studio 2015
 .vs/
