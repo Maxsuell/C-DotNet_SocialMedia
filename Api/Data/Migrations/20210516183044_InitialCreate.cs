@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LotusSocialMedia4.Api.Data.Migrations
+namespace LotusSocialMedia4.Data.migrations
 {
     public partial class InitialCreate : Migration
     {
