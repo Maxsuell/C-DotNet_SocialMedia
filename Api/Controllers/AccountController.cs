@@ -12,6 +12,7 @@ namespace Api.Controllers
 {
     public class AccountController : BaseApiController
     {
+        // Declaração de variaveis e injeção de dependencia 
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
 
@@ -22,6 +23,8 @@ namespace Api.Controllers
             _context = context;
         }
 
+        // Metodo http do tipo post, função de registro
+        //Link url/api/register
         [HttpPost("Register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
