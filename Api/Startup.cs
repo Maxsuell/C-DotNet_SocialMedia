@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Api.Data;
 using Api.Extensions;
 using Api.Interfaces;
+using Api.Middleware;
 using Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -47,12 +48,8 @@ namespace Api.LotusSocialMedia4
         // Esse metodo da inicio ao sistema, esse é o metodo principal e por ele os outros metodos são chamado e construidos
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //Confere se a api esta rodando em modo desenvolvedor
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            
+            app.UseMiddleware<ExceptionMiddleware>();
             //Chamada de metodos padroes de conexão com uma pagina http e https
             app.UseHttpsRedirection();
 
