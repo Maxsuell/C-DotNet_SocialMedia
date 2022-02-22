@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ngx-toastr": "^14.2.1"
+  }
+}

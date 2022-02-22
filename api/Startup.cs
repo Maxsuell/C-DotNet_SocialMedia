@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using api.Data;
+using api.Extensions;
+using api.Interfaces;
+using api.Middleware;
+using api.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,7 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
+using Microsoft.IdentityModel.Tokens;
 
 namespace api.LotusSocialMedia
 {
@@ -32,18 +37,17 @@ namespace api.LotusSocialMedia
         public void ConfigureServices(IServiceCollection services)
         {
             // Arquivo externo contendo os servicos do sistema
-            services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
-            });
+            services.AddApplicationServices(_config);
             // essas duas funcoes são padroes na api, elas são as responsaveis por inicias o modelo de api em C#
             services.AddControllers();
             services.AddCors();
+            services.AddIdentityServices(_config);
         }
 
         // Esse metodo da inicio ao sistema, esse é o metodo principal e por ele os outros metodos são chamado e construidos
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
             
             //Chamada de metodos padroes de conexão com uma pagina http e https
             app.UseHttpsRedirection();
