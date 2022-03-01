@@ -1,4 +1,4 @@
-namespace api.Entities
+namespace api.Extensions
 {
     public static class DateTimeExtensions
     {
