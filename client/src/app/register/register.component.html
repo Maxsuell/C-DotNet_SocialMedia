@@ -1,14 +1,36 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
     <h2 class="text-center text-primary">Sing up</h2>
     <hr>
+
     <div class="mb-3">
-        <input type="text" class="form-control" name="Users" [(ngModel)]="model.Users" placeholder="Username">
+        <label style="margin-right: 10px;">I am a: </label>
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" value='male' formControlName='gender'> Male
+        </label>
+        <label class="form-check-label">
+            <input type="radio" value='female' formControlName='gender' class="form-check-input ms-3"> Female
+        </label>
     </div>
-    <div class="mb-3">
-        <input type="password" class="form-control" name="Password" [(ngModel)]="model.Password" placeholder="Password">
+
+    <app-text-input [formControl]="registerForm.controls['username']" [label]='"Username"' [type]='"text"'></app-text-input>
+    <app-text-input [formControl]="registerForm.controls['knownAs']" [label]='"Knows As"' [type]='"text"'></app-text-input>
+    <app-date-input [formControl]="registerForm.controls['dateOfBirth']" [label]='"Date Of Birth"' [maxDate]='maxDate'></app-date-input>
+    <app-text-input [formControl]="registerForm.controls['city']" [label]='"City"' [type]='"text"'></app-text-input>
+    <app-text-input [formControl]="registerForm.controls['country']" [label]='"Country"' [type]='"text"'></app-text-input>    
+    <app-text-input [formControl]="registerForm.controls['password']" [label]='"Password"' [type]='"password"'></app-text-input>
+    <app-text-input [formControl]="registerForm.controls['confirmPassword']" [label]='"Confirm Password"' [type]='"password"'></app-text-input>
+
+    <div class="row" *ngIf="validationErrors.length > 0 ">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
     </div>
+
     <div class="form-group text-center">
-        <button class="btn btn-success me-2" type="submit">Register</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit">Register</button>
         <button class="btn btn-danger me-2" (click)="cancel()" type="button">Cancel</button>
     </div>
 </form>
+

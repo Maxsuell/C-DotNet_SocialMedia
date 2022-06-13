@@ -10,7 +10,11 @@ import { AccountService } from '../_services/account.service';
 })
 export class NavComponent implements OnInit {
   title = "SemNomeAinda";
-  model: any = {}
+  model: any = {};
+  user: any = {
+      "username": "max",
+      "password": "Passwod"
+  }
 
 
   constructor(public accountService: AccountService, private router: Router, private toastr : ToastrService) { }
@@ -21,11 +25,12 @@ export class NavComponent implements OnInit {
 
   login()
   {
-    this.accountService.login(this.model).subscribe(response => 
-      {
+
+    this.accountService.login(this.user).subscribe({
+      next: response => {
         this.router.navigateByUrl('/messages');
         console.log(response);       
-      });
+  }});
   }
 
   Logout()

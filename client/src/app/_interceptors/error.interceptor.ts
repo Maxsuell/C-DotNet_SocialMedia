@@ -31,7 +31,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 
               } else {
                 console.log(error);
-                this.toastr.error(error.errors, error.status);
+                this.toastr.error(error.error, error.status);
               }
               break;
             case 401:
@@ -46,7 +46,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               break;
             default:
               this.toastr.error('Something unexpected went wrong');
-              console.log(error);
+              console.log(error.error);
               break;
           }
         }

@@ -1,0 +1,13 @@
+dotnet --help - infomação sobre os comandos .net
+
+dotnet ef migrations add InitialCreate -o Data/migrations
+
+dotnet ef database update
+
+dotnet ef migrations UserPassawordAdded
+
+dotnet ef database drop
+
+sqlite
+    INSERT INTO 'Users' (Id,UserName)
+    VALUES (1, "Bob")

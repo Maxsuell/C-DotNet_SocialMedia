@@ -16,40 +16,43 @@ export class TestErrorsComponent implements OnInit {
   }
 
   get400Error() {
-    this.http.get(this.baseUrl + 'buggy/bad-request').subscribe(res => {
+    this.http.get(this.baseUrl + 'buggy/bad-request').subscribe({
+      next: res => {
       console.log(res);
-    }, error =>
-      console.log(error));
+    }, error: error =>
+      console.log(error)});
   }
 
   get500Error() {
-    this.http.get(this.baseUrl + 'buggy/server-error').subscribe(res => {
+    this.http.get(this.baseUrl + 'buggy/server-error').subscribe({
+      next: res => {
       console.log(res);
-    }, error =>
-      console.log(error));
+    }, error: error =>
+      console.log(error)});
   }
 
   get401Error() {
-    this.http.get(this.baseUrl + 'buggy/auth').subscribe(res => {
+    this.http.get(this.baseUrl + 'buggy/auth').subscribe({
+      next: res => {
       console.log(res);
-    }, error =>
-      console.log(error));
+    }, error: error =>
+      console.log(error)});
   }
 
   get404Error() {
-    this.http.get(this.baseUrl + 'buggy/not-found').subscribe(res => {
+    this.http.get(this.baseUrl + 'buggy/not-found').subscribe({
+      next: res => {
       console.log(res);
-    }, error =>
-      console.log(error));
+    }, error: error =>
+      console.log(error)});
   }
 
   get400ValidationError() {
-    this.http.post(this.baseUrl + 'account/register', {}).subscribe(res => {
+    this.http.post(this.baseUrl + 'account/register', {}).subscribe({
+      next: res => {
       console.log(res);
-    }, error => {
-      console.log(error);
-      this.validationErrors = error;
-    })
+    }, error: error =>
+      console.log(error)});
   }
 
 }
