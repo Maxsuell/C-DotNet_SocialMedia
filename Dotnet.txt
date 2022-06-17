@@ -11,3 +11,5 @@ dotnet ef database drop
 sqlite
     INSERT INTO 'Users' (Id,UserName)
     VALUES (1, "Bob")
+
+dotnet dev-certs https -t

@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using api.Data;
 using api.DTO;
 using api.Entities;
 using api.Extensions;
 using api.Interfaces;
+using API.Extensions;
+using API.Helpers;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,10 +34,23 @@ namespace api.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<MemberDto>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+            userParams.CurrentUserName = user.UserName;
 
-            var users = await _userRepository.GetMembersAsync();
+            if(string.IsNullOrEmpty(userParams.Gender))
+            userParams.Gender = user.Gender == "male" ? "female" : "male";
+            
+
+            var users = await _userRepository.GetMembersAsync(userParams);
+
+            Response.AddPaginationHeader(
+                users.CurrentPage,
+                userParams.PageSize, 
+                users.TotalCount, 
+                users.TotalPages
+                );
 
             return Ok(users);
 
@@ -42,8 +59,8 @@ namespace api.Controllers
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(String UserName)
         {
-
-            return await _userRepository.GetMemberAsync(UserName);
+            
+            return await _userRepository.GetMemberAsync(UserName);                   
 
         }
 

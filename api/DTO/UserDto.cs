@@ -10,6 +10,9 @@ namespace api.DTO
 
         public string KnownAs {get;set;}
         
+        public string Gender { get; set; }
+        
+        
         
     }
 }

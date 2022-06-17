@@ -12,8 +12,8 @@ export class NavComponent implements OnInit {
   title = "SemNomeAinda";
   model: any = {};
   user: any = {
-      "username": "max",
-      "password": "Passwod"
+      "username": "maxx",
+      "password": "Password"
   }
 
 
@@ -25,11 +25,12 @@ export class NavComponent implements OnInit {
 
   login()
   {
-
+  console.log(this.user);
     this.accountService.login(this.user).subscribe({
       next: response => {
         this.router.navigateByUrl('/messages');
-        console.log(response);       
+        console.log(response);
+               
   }});
   }
 
