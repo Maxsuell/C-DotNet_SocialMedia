@@ -8,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestErrorsComponent implements OnInit {
   baseUrl = 'https://localhost:5001/api/';
-  validationErrors: string[];
+  validationErrors: string[] = [];
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    
   }
 
   get400Error() {

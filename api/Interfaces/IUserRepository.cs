@@ -1,6 +1,6 @@
 using api.DTO;
 using api.Entities;
-using API.Helpers;
+using api.Helpers;
 
 namespace api.Interfaces
 {

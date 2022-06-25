@@ -2,7 +2,7 @@ using System.Linq;
 using api.DTO;
 using api.Entities;
 using api.Interfaces;
-using API.Helpers;
+using api.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;

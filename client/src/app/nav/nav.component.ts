@@ -11,10 +11,7 @@ import { AccountService } from '../_services/account.service';
 export class NavComponent implements OnInit {
   title = "SemNomeAinda";
   model: any = {};
-  user: any = {
-      "username": "maxx",
-      "password": "Password"
-  }
+  user =  this.model;
 
 
   constructor(public accountService: AccountService, private router: Router, private toastr : ToastrService) { }

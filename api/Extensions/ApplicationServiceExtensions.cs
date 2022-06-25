@@ -2,7 +2,6 @@ using api.Data;
 using api.Helpers;
 using api.Interfaces;
 using api.Services;
-using API.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Extensions
@@ -14,6 +13,8 @@ namespace api.Extensions
             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<ILikesRepository, LikesRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<LogUserActivity>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
