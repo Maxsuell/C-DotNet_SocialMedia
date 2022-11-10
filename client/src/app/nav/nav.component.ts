@@ -25,7 +25,7 @@ export class NavComponent implements OnInit {
   console.log(this.user);
     this.accountService.login(this.user).subscribe({
       next: response => {
-        this.router.navigateByUrl('/messages');
+        this.router.navigateByUrl('/');
         console.log(response);
                
   }});
