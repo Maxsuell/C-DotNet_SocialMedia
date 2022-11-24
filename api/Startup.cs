@@ -1,5 +1,6 @@
 using api.Extensions;
 using api.Middleware;
+using api.SignalR;
 
 namespace api.LotusSocialMedia
 {
@@ -23,6 +24,7 @@ namespace api.LotusSocialMedia
             services.AddControllers();
             services.AddCors();
             services.AddIdentityServices(_config);
+            services.AddSignalR();      
         }
 
         // Esse metodo da inicio ao sistema, esse é o metodo principal e por ele os outros metodos são chamado e construidos
@@ -35,7 +37,10 @@ namespace api.LotusSocialMedia
 
             app.UseRouting();
 
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+            app.UseCors(x => x.AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowCredentials()
+                                .WithOrigins("https://localhost:4200"));
 
             // Metodo de iniciação de de funcoes que controlam a autenticação e a autorização
             app.UseAuthentication();
@@ -45,6 +50,8 @@ namespace api.LotusSocialMedia
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<PresenceHub>("hubs/presence");
+                endpoints.MapHub<MessageHub>("hubs/message");
             });
         }
     }
