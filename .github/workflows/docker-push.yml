@@ -3,8 +3,8 @@ name: dockerPush
 on:
   workflow_dispath:
   #push:
-  #  branches:
-  #    - 'main'
+   branches:
+      - 'master'
 
 jobs:
   docker:
