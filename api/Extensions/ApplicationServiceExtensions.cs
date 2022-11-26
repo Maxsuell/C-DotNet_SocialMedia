@@ -18,11 +18,7 @@ namespace api.Extensions
             services.AddScoped<LogUserActivity>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-            services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
-            });
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            
 
             return services;
         }

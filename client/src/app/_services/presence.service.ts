@@ -11,7 +11,7 @@ import { User } from '../_models/user';
   providedIn: 'root'
 })
 export class PresenceService {
-  hubUrl = 'https://localhost:5001/hubs/presence';
+  hubUrl = environment.hubUrl;
   private hubConnection: HubConnection;
   private onlineUsersSource = new BehaviorSubject<string[]>([]);
   onlineUsers$ = this.onlineUsersSource.asObservable();
@@ -23,7 +23,7 @@ export class PresenceService {
   createHubConnection(user: User)
   {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl(this.hubUrl, {
+      .withUrl(this.hubUrl + 'presence', {
         accessTokenFactory: () => user.token
       }).withAutomaticReconnect().build();
 

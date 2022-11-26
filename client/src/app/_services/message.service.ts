@@ -16,7 +16,7 @@ export class MessageService {
     throw new Error('Method not implemented.');
   }
   baseUrl = environment.apiUrl;
-  hubUrl = 'https://localhost:5001/hubs/messages?user=';
+  hubUrl = environment.hubUrl;
   private hubConnection: HubConnection;
   private messageThreadSource = new BehaviorSubject<Message[]>([]);
   messageThread$ = this.messageThreadSource.asObservable();
@@ -26,7 +26,7 @@ export class MessageService {
   createHubConnection(user: User, otherUsername: string)
   {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl('https://localhost:5001/hubs/message?user=' + otherUsername , {
+      .withUrl( this.hubUrl + 'message?user=' + otherUsername , {
         accessTokenFactory: () => user.token
       }).withAutomaticReconnect().build();
 
