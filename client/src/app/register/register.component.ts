@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    console.log(this.registerForm.value);
+    
       this.accountService.register(this.registerForm.value).subscribe({
       next: Res => this.router.navigateByUrl('/members'),
       error: error =>this.validationErrors = error

@@ -78,7 +78,7 @@ export class MessageService {
   
   getMessageThread(username: string)
   {
-    console.log(this.baseUrl + 'messages/thread/' + username);
+    
     return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + username);
   }
 

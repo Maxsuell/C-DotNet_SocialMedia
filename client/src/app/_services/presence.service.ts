@@ -52,7 +52,7 @@ export class PresenceService {
       this.hubConnection.on('NewMessageReceived', ({username,knownAs}) => 
       {
         this.newMessageSource.pipe(take(1)).subscribe( x => x[0] = 3 );
-        console.log(this.newMessageSource);
+        
         this.toastr.info(knownAs + ' has sent you a new message!')
           .onTap
           .pipe(take(1))

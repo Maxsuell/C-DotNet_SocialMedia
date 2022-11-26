@@ -26,7 +26,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   openRolesModal(user: User) {
-    console.log(user);
+   
     const config = {
       class: 'modal-dialog-centered',
       initialState: {
